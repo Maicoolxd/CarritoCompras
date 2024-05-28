@@ -87,6 +87,7 @@ public class Servlet extends HttpServlet {
         //caso contrario se enviara un mensaje de que no contien productos
         if (factura != null && !factura.isEmpty()) {
             response.getWriter().println(factura);
+            response.getWriter().println("<p>Total General: " + totalFin + "</p>");
             response.getWriter().println("<p>IVA (15%): " + iva + "</p>");
             response.getWriter().println("<p>Total de su compra " + totalConIVA + "</p>");
         } else {
