@@ -1,10 +1,31 @@
+<!-- Nombre del programador: Michael Guaman
+* Materia: Lenguajes de Programacion 2
+* Fecha: 20/05/2024
+* Detalle:Ingreso de sesiones
+* Version:1.1.0-->
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <title>Productos </title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-$END$
+<h1>Carrito de Compras</h1>
+<form action="Servlet" method="post">
+    <label for="nombre">Nombre del Producto:</label>
+    <input type="text" id="nombre" name="nombre" required><br><br>
+
+    <label for="cantidad">Cantidad del Producto:</label>
+    <input type="number" id="cantidad" name="cantidad" required><br><br>
+
+    <label for="valorUnitario">Valor Unitario:</label>
+    <input type="number" id="valorUnitario" name="valorUnitario" step="0.01" required><br><br>
+
+    <input type="submit" value="Ingresar">
+</form>
+<form action="Servlet" method="get">
+    <input type="submit" value="Datos de la Factura">
+</form>
 </body>
 </html>
