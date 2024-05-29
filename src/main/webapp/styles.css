@@ -3,7 +3,7 @@ body {
     background-color: #f2f2f2;
     margin: 0;
     padding: 20px;
-    background: linear-gradient(rgb(243, 77, 77), rgb(49, 64, 68));
+    background: linear-gradient(rgb(134, 230, 131), rgb(204, 228, 235));
 }
 
 h1 {
@@ -11,30 +11,39 @@ h1 {
 }
 
 form {
-    padding: 50px;
-    background: linear-gradient(rgb(81, 170, 143), rgb(83, 230, 173));}
+    margin-bottom: 500px;
+    padding: 10px;
+
+}
 
 label {
-    display: block;
+    display: inline-block;
+    width: 150px;
     margin-bottom: 10px;
 }
 
-input[type="text"], input[type="submit"] {
-    width: 30%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    box-sizing: border-box;
+input[type="text"], input[type="number"] {
+    width: 200px;
+    padding: 5px;
+    margin-bottom: 10px;
 }
 
 input[type="submit"] {
-    background-color: #576875;
-    color: white;
-    border: none;
-    cursor: pointer;
+    padding: 5px 10px;
 }
 
-input[type="submit"]:hover {
-    background-color: #45a049;
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #f4f4f4;
 }

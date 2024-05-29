@@ -12,6 +12,8 @@
     <list default="true" id="4047be14-dc84-43e1-949c-d4881c333620" name="Changes" comment="Formulario de Productos">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/maicol/formulario/formulario/Servlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/maicol/formulario/formulario/Servlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,7 +157,14 @@
       <updated>1716837901569</updated>
       <workItem from="1716837902663" duration="1748000" />
       <workItem from="1716859448637" duration="7753000" />
-      <workItem from="1716867323182" duration="249000" />
+      <workItem from="1716867323182" duration="498000" />
+      <workItem from="1716901314175" duration="287000" />
+      <workItem from="1716901690184" duration="3466000" />
+      <workItem from="1716905748949" duration="2175000" />
+      <workItem from="1716908288244" duration="335000" />
+      <workItem from="1716923977377" duration="6000" />
+      <workItem from="1716924575503" duration="1313000" />
+      <workItem from="1716948600419" duration="936000" />
     </task>
     <task id="LOCAL-00001" summary="Formulario de Productos">
       <option name="closed" value="true" />
@@ -165,7 +174,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716867135103</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Formulario de Productos">
+      <option name="closed" value="true" />
+      <created>1716867724274</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1716867724274</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

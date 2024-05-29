@@ -3,7 +3,7 @@ package org.maicol.formulario.formulario;
 /*Nombre del programador: Michael Guaman
 Materia: Lenguajes de Programacion 2
 Fecha: 20/05/2024
-Detalle:Carrito de compras
+Detalle: Carrito de compras
 Este formulario permite el ingreso de datos de un producto
 y a su vez permite mostrar un sistema de facturacion
 Version:1.1.0*/
@@ -15,15 +15,16 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-
+import java.io.PrintWriter;
 
 @WebServlet("/Servlet")
 public class Servlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        //Permite crear un sesion para almacenar la informacion ingresada por el usuario
+        // Permite crear una sesion para almacenar la informacion ingresada por el usuario
+        response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
 
-        //Ingreso de los datos o parametros que se necesita para el formulario
+        // Ingreso de los datos o parametros que se necesita para el formulario
         String nombre = request.getParameter("nombre");
         int cantidad = Integer.parseInt(request.getParameter("cantidad"));
         double valorUnitario = Double.parseDouble(request.getParameter("valorUnitario"));
@@ -31,72 +32,52 @@ public class Servlet extends HttpServlet {
         // Calcular el valor total de los productos ingresados
         double valorTotal = cantidad * valorUnitario;
 
-        // Aqui se obtiene los datos de la factura que se almacenan en la sesion
+        // Obtener los datos de la factura que se almacenan en la sesion
         String factura = (String) session.getAttribute("factura");
         if (factura == null) {
-            factura = "";
+            factura = "<table><tr><th>Producto</th><th>Cantidad</th><th>Valor Unitario</th><th>Subtotal</th></tr>";
         }
 
-        //Aqui se obtiene el total de todas las compras realizadas en la sesion, es decir se acumulan
-        //cada que ingresan nuevos productos
+        // Obtener el total de todas las compras realizadas en la sesion
         Double totalFin = (Double) session.getAttribute("totalFin");
         if (totalFin == null) {
             totalFin = 0.0;
         }
 
-        // Se agregan los los datos ingresados a la factura
-        factura += "<p>Su producto: " + nombre + "<br>";
-        factura += "La cantidad que adquirio es: " + cantidad + "<br>";
-        factura += "El valor Unitario es: " + valorUnitario + "<br>";
-        factura += "El subtotal es: " + valorTotal + "</p>";
+        // Agregar los datos ingresados a la factura
+        factura += "<tr><td>" + nombre + "</td><td>" + cantidad + "</td><td>" + valorUnitario + "</td><td>" + valorTotal + "</td></tr>";
 
-        // Actualizar el total acumulado es decir el total de todas las compras
-        // con el valor total del producto actual
+        // Actualizar el total acumulado
         totalFin += valorTotal;
 
-        //Aqui se actualizan los datos de la factura nueva que ingresa el uusuario cada que inicia sesion
-        //y a su vez se actuliza el campo del total de todos los productos acumulados
+        // Actualizar los datos de la factura y el total en la sesion
         session.setAttribute("factura", factura);
         session.setAttribute("totalFin", totalFin);
 
-        //Se redirige al formulario para ingresar nuevos productos, aqui podemos utilizar el metodo get o set
-        //dependiendo su caso
-        response.sendRedirect("Servlet");
-    }
+        // Generar la respuesta HTML para mostrar la factura
+        PrintWriter out = response.getWriter();
+        out.println("<html><head><link rel=\"stylesheet\" type=\"text/css\" href=\"styles.css\"></head><body>");
+        out.println("<h1>Factura de los productos</h1>");
 
-    //mediante el metodo doGet enviamos maneja las distintas peticiones enviadas al servlet
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws  IOException {
-        HttpSession session = request.getSession();
-        //obtenemos la factura actula de los productos ingresados y el total acumulado de los productos
-        String factura = (String) session.getAttribute("factura");
-        Double totalFin = (Double) session.getAttribute("totalFin");
-
-        //Calculo del IVA (15%)
+        // Calculo del IVA (15%)
         double iva = totalFin * 0.15;
-
-        // Calcular el total con el IVA incluido
         double totalConIVA = totalFin + iva;
 
-        // Generar la respuesta de acuerdo a la estructura del HTML para mostrar
-        //los datos de la factura
-        response.setContentType("text/html");
-        response.getWriter().println("<html><body>");
-        response.getWriter().println("<h1>Factura de los productos</h1>");
-
-        //colocamos una condicion en mostrando el total acumulado de todas las compras realizadas
-        //caso contrario se enviara un mensaje de que no contien productos
-        if (factura != null && !factura.isEmpty()) {
-            response.getWriter().println(factura);
-            response.getWriter().println("<p>Total General: " + totalFin + "</p>");
-            response.getWriter().println("<p>IVA (15%): " + iva + "</p>");
-            response.getWriter().println("<p>Total de su compra " + totalConIVA + "</p>");
+        // Mostrar la factura
+        if (!factura.isEmpty()) {
+            out.println(factura);
+            out.println("<tr><td colspan='3'>Total General</td><td>" + totalFin + "</td></tr>");
+            out.println("<tr><td colspan='3'>IVA (15%)</td><td>" + iva + "</td></tr>");
+            out.println("<tr><td colspan='3'>Total con IVA</td><td>" + totalConIVA + "</td></tr>");
+            out.println("</table>");
         } else {
-            response.getWriter().println("<p>Usted no adquirio productos</p>");
+            out.println("<p>Usted no adquirio productos</p>");
         }
 
-        response.getWriter().println("<form action='index.html' method='get'>");
-        response.getWriter().println("<input type='submit' value='Regresar'>");
-        response.getWriter().println("</form>");
-        response.getWriter().println("</body></html>");
+        // Botón para regresar al formulario
+        out.println("<form action='index.html' method='get'>");
+        out.println("<input type='submit' value='Regresar'>");
+        out.println("</form>");
+        out.println("</body></html>");
     }
 }
